@@ -28,8 +28,10 @@ func main() {
 	join := flag.Bool("join", false, "join an existing cluster")
 	flag.Parse()
 
+	// 用于提交写入的数据
 	proposeC := make(chan string)
 	defer close(proposeC)
+	// 用于提交配置变动数据
 	confChangeC := make(chan raftpb.ConfChange)
 	defer close(confChangeC)
 
